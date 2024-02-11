@@ -34,7 +34,7 @@ junit = "4.13.2"
 mockk = "1.13.7"
 kotlinx-coroutines-test = "1.7.3"
 androidx-test-ext-junit = "1.1.5"
-org-jetbrains-kotlin-jvm = "1.9.10"
+org-jetbrains-kotlin-jvm = "1.8.10"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
@@ -63,7 +63,7 @@ ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 navigation = {group = "androidx.navigation", name = "navigation-compose"}
-androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version = "2.7.4" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version = "2.7.7" }
 
 # data
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
