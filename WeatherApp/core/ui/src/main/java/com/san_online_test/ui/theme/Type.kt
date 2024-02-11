@@ -1,4 +1,4 @@
-package com.san_online_test.weatherapp.ui.theme
+package com.san_online_test.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
