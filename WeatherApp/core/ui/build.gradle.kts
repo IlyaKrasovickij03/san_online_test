@@ -31,11 +31,17 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composecompiler.get()
+    }
 }
 
 dependencies {
 
-    implementation(libs.material)
+    implementation(libs.core.ktx)
 
     // ui compose
     implementation(platform(libs.compose.bom))
@@ -43,13 +49,6 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-    implementation(libs.navigation)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.kotlinx.collections.immutable)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.coil.compose)
 
     // tests
     testImplementation(libs.junit)
