@@ -1,4 +1,4 @@
-package com.san_online_test.weatherapp.settings
+package com.san_online_test.weatherapp.presentation.favorites
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,24 +8,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.san_online_test.ui.theme.WeatherAppTheme
 import com.san_online_test.ui.R
-import com.san_online_test.weatherapp.theme.WeatherAppTheme
 
 @Composable
-fun SettingsScreen() {
+fun FavoritesScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = stringResource(id = R.string.settings_screen))
+        Text(text = stringResource(id = R.string.favorites_screen))
     }
 }
 
 @Preview
 @Composable
-fun SettingsScreenPreview() {
+fun FavoritesScreenPreview() {
     WeatherAppTheme {
-        SettingsScreen()
+        FavoritesScreen()
     }
 }
