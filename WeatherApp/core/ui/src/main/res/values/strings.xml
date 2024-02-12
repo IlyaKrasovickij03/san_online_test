@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+
+    <!-- Screens Titles -->
+    <string name="favorites_screen">Favorites Screen</string>
+    <string name="profile_screen">Profile Screen</string>
+    <string name="settings_screen">Settings Screen</string>
+    <string name="search_screen">Search Screen</string>
+    <string name="home_screen">Weather</string>
+
+    <!-- Screens Titles On Bottom Menu-->
+    <string name="favorites_screen_bottom">Favorites</string>
+    <string name="profile_screen_bottom">Profile</string>
+    <string name="settings_screen_bottom">Settings</string>
+    <string name="search_screen_bottom">Search</string>
+    <string name="home_screen_bottom">Home</string>
 </resources>
