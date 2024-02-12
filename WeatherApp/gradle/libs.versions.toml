@@ -9,6 +9,9 @@ targetSdk = "34"
 agp = "8.1.2"
 org-jetbrains-kotlin-android = "1.9.10"
 
+# DI
+dagger = "2.50"
+
 # core
 core-ktx = "1.12.0"
 kotlinx_immutable = "0.3.5"
@@ -41,6 +44,11 @@ appcompat = "1.6.1"
 material = "1.9.0"
 
 [libraries]
+
+# DI
+dagger = { group = "com.google.dagger", name = "dagger-android", version.ref = "dagger" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
 
 # core
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }

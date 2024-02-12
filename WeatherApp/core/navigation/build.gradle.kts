@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.san_online_test.data"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "com.san_online_test.navigation"
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -25,25 +25,23 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
 
-    implementation(project(":domain"))
+    implementation(project(":core:ui"))
 
     implementation(libs.core.ktx)
-
-    //parsing
-    implementation(libs.moshi.kotlin)
-
+    implementation(libs.material)
+    implementation(libs.navigation)
+    implementation(libs.androidx.navigation.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
-
-    implementation(libs.kotlinx.coroutines.android)
+    androidTestImplementation(libs.espresso.core)
 }
