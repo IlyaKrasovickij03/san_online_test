@@ -32,6 +32,7 @@ androidx-material = "1.6.1"
 
 # data
 moshi = "1.14.0"
+datastore = "1.0.0"
 
 # tests
 junit = "4.13.2"
@@ -77,6 +78,7 @@ androidx-material = { module = "androidx.compose.material:material", version.ref
 
 # data
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 
 # tests
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -87,6 +89,7 @@ navigation-testing = { group = "androidx.navigation", name = "navigation-testing
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version = "21.1.0" }
 
 
 [plugins]
