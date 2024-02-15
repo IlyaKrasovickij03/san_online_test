@@ -90,6 +90,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version = "21.1.0" }
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version = "1.0.0" }
 
 
 [plugins]

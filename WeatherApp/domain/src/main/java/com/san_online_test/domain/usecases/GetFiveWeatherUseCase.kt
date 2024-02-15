@@ -5,11 +5,10 @@ import com.san_online_test.domain.model.WeatherItem
 import com.san_online_test.domain.repository.WeatherRepository
 import javax.inject.Inject
 
-private const val ITEMS_COUNT_RECEIVED = 5
-class GetLastFiveWeatherUseCase @Inject constructor(
+class GetFiveWeatherUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository
 ): UseCaseWithoutParams<List<WeatherItem>> {
     override suspend fun execute(): List<WeatherItem> {
-        return weatherRepository.getAllWeather().take(ITEMS_COUNT_RECEIVED)
+        return weatherRepository.getAllWeather()
     }
 }
