@@ -22,6 +22,9 @@ internal fun WeatherNetwork.toDomain(): List<WeatherItem>{
             windSpeed = it.wind.speed.roundToInt(),
             minTemperature = it.main.tempMin.roundToInt(),
             maxTemperature = it.main.tempMax.roundToInt(),
+            feelsLike = it.main.feelsLike.roundToInt(),
+            visibility = it.visibility.toInt(),
+            snow = it.snow?.n3h?.roundToInt() ?: 0
         ))
     }
     return result

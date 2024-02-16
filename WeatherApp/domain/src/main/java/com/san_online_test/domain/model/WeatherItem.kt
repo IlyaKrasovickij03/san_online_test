@@ -10,4 +10,7 @@ data class WeatherItem(
     val windSpeed: Int,
     val minTemperature: Int,
     val maxTemperature: Int,
+    val feelsLike: Int,
+    val visibility: Int,
+    val snow: Int
 )
