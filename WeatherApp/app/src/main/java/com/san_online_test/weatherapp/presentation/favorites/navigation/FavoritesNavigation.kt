@@ -2,25 +2,30 @@ package com.san_online_test.weatherapp.presentation.favorites.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.san_online_test.navigation.DestinationModel
+import androidx.navigation.navigation
+import com.san_online_test.navigation.WeatherTopLevelDestination
 import com.san_online_test.navigation.WeatherAppDestination
 import com.san_online_test.ui.R
 import com.san_online_test.weatherapp.presentation.favorites.FavoritesScreen
+import com.san_online_test.weatherapp.presentation.profile.ProfileScreen
 
-const val FAVORITES_ROUTE = "favorites"
+const val FAVORITES_GRAPH = "favorites_graph"
 
-fun NavGraphBuilder.favorites(){
-    composable(FavoritesDestination.route){
-        FavoritesScreen()
+data object FavoritesDestination : WeatherAppDestination {
+    override val route = "$FAVORITES_GRAPH/favorites"
+}
+
+data class FavoritesTopLevelDestination(
+    override val iconId: Int = R.drawable.ic_favorites,
+    override val titleId: Int = R.string.favorites_screen_bottom,
+    override val graph: String = FAVORITES_GRAPH
+) : WeatherTopLevelDestination
+
+
+fun NavGraphBuilder.favorites() {
+    navigation(startDestination = FavoritesDestination.route, route = FAVORITES_GRAPH){
+        composable(route = FavoritesDestination.route) {
+            FavoritesScreen()
+        }
     }
-}
-
-object FavoritesDestination: WeatherAppDestination {
-    override val route = FAVORITES_ROUTE
-}
-
-object FavoritesTopLevelDestination: DestinationModel {
-    override val iconId = R.drawable.ic_favorites
-    override val titleId = R.string.favorites_screen_bottom
-    override val route = FavoritesDestination.route
 }

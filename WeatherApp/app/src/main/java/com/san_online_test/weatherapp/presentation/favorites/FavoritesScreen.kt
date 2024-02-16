@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.san_online_test.ui.theme.WeatherAppTheme
+import com.san_online_test.ui.design.theme.WeatherAppTheme
 import com.san_online_test.ui.R
 
 @Composable

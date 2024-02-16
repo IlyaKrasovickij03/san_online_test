@@ -1,49 +1,43 @@
 package com.san_online_test.weatherapp.presentation.bottom_menu.widgets
 
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.san_online_test.navigation.DestinationModel
-import com.san_online_test.ui.theme.WeatherAppTheme
+import com.san_online_test.ui.design.theme.WeatherAppTheme
+import com.san_online_test.weatherapp.presentation.bottom_menu.viewModel.BottomMenuUiState
 import com.san_online_test.weatherapp.presentation.favorites.navigation.FavoritesTopLevelDestination
-import com.san_online_test.weatherapp.presentation.home.navigation.HomeDestination
 import com.san_online_test.weatherapp.presentation.home.navigation.HomeTopLevelDestination
 import com.san_online_test.weatherapp.presentation.profile.navigation.ProfileTopLevelDestination
+import com.san_online_test.weatherapp.presentation.search.navigation.SEARCH_GRAPH
 import com.san_online_test.weatherapp.presentation.search.navigation.SearchTopLevelDestination
 import com.san_online_test.weatherapp.presentation.settings.navigation.SettingsTopLevelDestination
+import kotlinx.collections.immutable.persistentListOf
 
 
 @Composable
 fun WeatherAppBottomBar(
-    currentDestination: String,
-    onNavigateToTopLevel: (topRoute: String) -> Unit,
-    destination: List<DestinationModel>,
     modifier: Modifier = Modifier,
+    currentDestination: String?,
+    onNavigateToTopLevel: (topRoute: String) -> Unit,
+    bottomUiState: BottomMenuUiState
 
-) {
-    NavigationBar(containerColor = MaterialTheme.colorScheme.background
+
     ) {
-        destination.forEach { item ->
-            NavigationBarItem(
-                selected = currentDestination == item.route,
-                onClick = { onNavigateToTopLevel(item.route) },
-                icon = {
-                    Icon(
-                        painter = painterResource(id = item.iconId),
-                        contentDescription = ""
-                    )
-                },
-                alwaysShowLabel = false,
-                modifier = modifier,
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primaryContainer,
-                    unselectedIconColor = MaterialTheme.colorScheme.onSurface)
+    WeatherAppNavBar {
+        bottomUiState.topLevelDestinations.forEachIndexed { index, item ->
+            AnimatedIconTab(
+                modifier = modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                iconResourceId = item.iconId,
+                contentDescription = stringResource(item.titleId),
+                selected = currentDestination == item.graph,
+                onClicked = { onNavigateToTopLevel(item.graph) },
+                selectedColor = MaterialTheme.colorScheme.primary,
+                notSelectedColor = MaterialTheme.colorScheme.onSurface,
             )
         }
     }
@@ -51,19 +45,20 @@ fun WeatherAppBottomBar(
 
 @Preview
 @Composable
-fun WeatherAppBottomBarPreview() {
+fun KiparoNavBarPreview() {
     WeatherAppTheme {
         WeatherAppBottomBar(
-            currentDestination = HomeDestination.route,
-            onNavigateToTopLevel = {},
-            destination = listOf(
-                HomeTopLevelDestination,
-                SearchTopLevelDestination,
-                FavoritesTopLevelDestination,
-                ProfileTopLevelDestination,
-                SettingsTopLevelDestination
+            bottomUiState = BottomMenuUiState(
+                topLevelDestinations = persistentListOf(
+                    HomeTopLevelDestination(),
+                    SearchTopLevelDestination(),
+                    FavoritesTopLevelDestination(),
+                    ProfileTopLevelDestination(),
+                    SettingsTopLevelDestination()
+                )
             ),
-            modifier = Modifier,
+            currentDestination = SEARCH_GRAPH,
+            onNavigateToTopLevel = {},
         )
     }
 }

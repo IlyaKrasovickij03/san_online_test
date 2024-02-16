@@ -3,6 +3,8 @@ package com.san_online_test.weatherapp.di
 import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.san_online_test.data.location.DefaultLocationTracker
@@ -11,13 +13,15 @@ import com.san_online_test.data.repository.WeatherRepositoryImpl
 import com.san_online_test.data.storage.LocalStorage
 import com.san_online_test.domain.location.LocationTracker
 import com.san_online_test.domain.repository.WeatherRepository
+import com.san_online_test.navigation.TopDestinationsCollection
+import com.san_online_test.weatherapp.presentation.favorites.navigation.FavoritesTopLevelDestination
+import com.san_online_test.weatherapp.presentation.home.navigation.HomeTopLevelDestination
+import com.san_online_test.weatherapp.presentation.profile.navigation.ProfileTopLevelDestination
+import com.san_online_test.weatherapp.presentation.search.navigation.SearchTopLevelDestination
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import java.time.LocalDateTime
 
 @Module
 class AppModule(
@@ -108,6 +112,19 @@ class AppModule(
     @Provides
     fun provideContext(): Context {
         return context
+    }
+
+    @Provides
+    fun provideTopLevelDestinations(): TopDestinationsCollection {
+        return TopDestinationsCollection(
+            items = listOf(
+                HomeTopLevelDestination(),
+                SearchTopLevelDestination(),
+                FavoritesTopLevelDestination(),
+                ProfileTopLevelDestination(),
+                SearchTopLevelDestination()
+            )
+        )
     }
 
 
