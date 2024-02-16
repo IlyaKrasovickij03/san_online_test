@@ -9,9 +9,29 @@
     <string name="home_screen">Weather</string>
 
     <!-- Screens Titles On Bottom Menu-->
-    <string name="favorites_screen_bottom">Favorites</string>
-    <string name="profile_screen_bottom">Profile</string>
-    <string name="settings_screen_bottom">Settings</string>
-    <string name="search_screen_bottom">Search</string>
-    <string name="home_screen_bottom">Home</string>
+    <string name="favorites_screen_bottom">Избранное</string>
+    <string name="profile_screen_bottom">Профиль</string>
+    <string name="settings_screen_bottom">Настройки</string>
+    <string name="search_screen_bottom">Поиск</string>
+    <string name="home_screen_bottom">Главная</string>
+
+
+    <!-- Weather -->
+    <string name="weather">Погода</string>
+    <string name="date">Дата: </string>
+    <string name="min_temp">Мин.Темп.: </string>
+    <string name="max_temp">Макс.Темп.: </string>
+    <string name="atmospheric_pressure">Атм.Давл.: </string>
+    <string name="relative_humidity">Влажность: </string>
+    <string name="cloudy_percent">Облачность: </string>
+    <string name="wind_speed">Скор.Ветра: </string>
+    <string name="feels_like">Ощущается как: </string>
+    <string name="visibility">Видимостть: </string>
+    <string name="snow">Ср. кол-во осадков: </string>
+
+    <!-- Content Description -->
+    <string name="arrow_back_cd">Navigate Back</string>
+
+
 </resources>
+

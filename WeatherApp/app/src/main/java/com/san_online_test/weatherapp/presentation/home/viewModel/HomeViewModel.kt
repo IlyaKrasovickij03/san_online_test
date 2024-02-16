@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.delay
 import androidx.lifecycle.viewModelScope
-import com.san_online_test.data.network.api.WeatherAppApiNetwork
+import com.san_online_test.domain.model.Location
 import com.san_online_test.domain.model.WeatherItem
-import com.san_online_test.domain.usecases.GetLastFiveWeatherUseCase
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.san_online_test.domain.usecases.GetCurrentUserLocationUseCase
+import com.san_online_test.domain.usecases.GetAllWeatherUseCase
+import com.san_online_test.domain.usecases.GetFiveWeatherUseCase
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,11 +27,14 @@ sealed interface HomeUiState {
     data class Success(
         val weatherForecast: ImmutableList<WeatherItem>,
         val currentCityName: String,
+        val currentLocation: Location?
     ): HomeUiState
 }
 
 class HomeViewModel(
-    private val getLastFiveWeatherUseCase: GetLastFiveWeatherUseCase
+    private val getAllWeatherUseCase: GetAllWeatherUseCase,
+    private val getFiveWeatherUseCase: GetFiveWeatherUseCase,
+    private val getCurrentUserLocationUseCase: GetCurrentUserLocationUseCase,
 ): ViewModel() {
 
     private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
@@ -42,44 +45,56 @@ class HomeViewModel(
     }
 
     var isRefreshing by mutableStateOf(false)
-    val api_key = "f6f4dc2da8092cb1c8b18c09dfd1e77f"
-    val get = WeatherAppApiNetwork(
-        apiUrl = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=$api_key",
-        moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-    )
 
     fun getSwipeList() = viewModelScope.launch {
         isRefreshing = true
         delay(2000L)
-        repeat(3) {
-            Log.d("AAA", "Refresh")
-            isRefreshing = false
-        }
+        Log.d("AAA", "Refresh")
+        isRefreshing = false
         delay(2000L)
-        get.getWeather()
+        setCurrentLocation()
     }
-
     private fun initHome(){
+
         viewModelScope.launch {
-            val weatherForecast = getLastFiveWeatherUseCase.execute()
+            val fiveWeatherForecast = getFiveWeatherUseCase.execute()
+            val location = getCurrentUserLocationUseCase.execute()
             _uiState.update {
                 HomeUiState.Success(
-                    weatherForecast = weatherForecast.toImmutableList(),
-                    currentCityName = weatherForecast[0].cityName
+                    currentLocation = location,
+                    weatherForecast = fiveWeatherForecast.toImmutableList(),
+                    currentCityName = fiveWeatherForecast[0].cityName
                 )
             }
+
         }
     }
 
+    private fun setCurrentLocation() {
+        viewModelScope.launch {
+            Log.d("LOCATION", getCurrentUserLocationUseCase.execute().toString())
+            val fiveWeatherForecast = getFiveWeatherUseCase.execute()
+            val location = getCurrentUserLocationUseCase.execute()
+            _uiState.update {
+                (it as HomeUiState.Success).copy(
+                    currentLocation = location,
+                    currentCityName = fiveWeatherForecast[0].cityName
+                )
+            }
+
+        }
+    }
     internal class Factory(
-        private val getLastFiveWeatherUseCase: GetLastFiveWeatherUseCase
+        private val getAllWeatherUseCase: GetAllWeatherUseCase,
+        private val getFiveWeatherUseCase: GetFiveWeatherUseCase,
+        private val getCurrentUserLocationUseCase: GetCurrentUserLocationUseCase,
     ) : ViewModelProvider.NewInstanceFactory() {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T =
             HomeViewModel(
-                getLastFiveWeatherUseCase = getLastFiveWeatherUseCase
+                getAllWeatherUseCase = getAllWeatherUseCase,
+                getCurrentUserLocationUseCase = getCurrentUserLocationUseCase,
+                getFiveWeatherUseCase = getFiveWeatherUseCase
             ) as T
     }
 }
