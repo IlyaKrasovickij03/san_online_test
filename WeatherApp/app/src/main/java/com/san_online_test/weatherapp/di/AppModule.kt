@@ -18,6 +18,7 @@ import com.san_online_test.weatherapp.presentation.favorites.navigation.Favorite
 import com.san_online_test.weatherapp.presentation.home.navigation.HomeTopLevelDestination
 import com.san_online_test.weatherapp.presentation.profile.navigation.ProfileTopLevelDestination
 import com.san_online_test.weatherapp.presentation.search.navigation.SearchTopLevelDestination
+import com.san_online_test.weatherapp.presentation.settings.navigation.SettingsTopLevelDestination
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -122,7 +123,7 @@ class AppModule(
                 SearchTopLevelDestination(),
                 FavoritesTopLevelDestination(),
                 ProfileTopLevelDestination(),
-                SearchTopLevelDestination()
+                SettingsTopLevelDestination()
             )
         )
     }

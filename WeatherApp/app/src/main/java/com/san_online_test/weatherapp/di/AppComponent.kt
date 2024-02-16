@@ -3,7 +3,8 @@ package com.san_online_test.weatherapp.di
 import com.san_online_test.domain.usecases.GetCurrentUserLocationUseCase
 import com.san_online_test.domain.usecases.GetAllWeatherUseCase
 import com.san_online_test.domain.usecases.GetFiveWeatherUseCase
-import com.san_online_test.domain.usecases.GetOneWeatherUseCase
+import com.san_online_test.domain.usecases.GetOneAmongFiveWeatherUseCase
+import com.san_online_test.domain.usecases.GetSingleWeatherUseCase
 import com.san_online_test.navigation.TopDestinationsCollection
 import dagger.Component
 
@@ -11,7 +12,8 @@ import dagger.Component
 interface AppComponent {
     val getAllWeatherUseCase: GetAllWeatherUseCase
     val getFiveWeatherUseCase: GetFiveWeatherUseCase
-    val getOneWeatherUseCase: GetOneWeatherUseCase
+    val getSingleWeatherUseCase: GetSingleWeatherUseCase
     val getCurrentUserLocationUseCase: GetCurrentUserLocationUseCase
     val topDestinationsCollection: TopDestinationsCollection
+    val getOneAmongFiveWeatherUseCase: GetOneAmongFiveWeatherUseCase
 }

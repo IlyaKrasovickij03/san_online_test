@@ -6,6 +6,11 @@ plugins {
     id("kotlin-kapt")
 }
 
+val apiUrl: String = com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+    rootDir
+).getProperty("WEATHER_API_URL")
+
+
 android {
     namespace = "com.san_online_test.weatherapp"
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -18,6 +23,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
 
     buildFeatures.buildConfig = true
@@ -53,7 +60,10 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:navigation"))
 
+    implementation(libs.play.services.location)
+
     implementation(libs.dagger)
+    implementation(libs.datastore)
     kapt(libs.dagger.compiler)
 
     implementation(libs.core.ktx)
@@ -85,4 +95,5 @@ dependencies {
 
     //удалить
     implementation(libs.moshi.kotlin)
+    implementation (libs.accompanist.permissions)
 }
