@@ -17,6 +17,7 @@ import dagger.Module
 import dagger.Provides
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import java.time.LocalDateTime
 
 @Module
 class AppModule(
@@ -24,6 +25,7 @@ class AppModule(
     private val context: Context,
 ) {
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "WeatherApp")
+
     @Provides
     fun provideWeatherRepository(
         weatherAppApiNetwork: WeatherAppApiNetwork
@@ -39,9 +41,10 @@ class AppModule(
     ): WeatherAppApiNetwork {
         return WeatherAppApiNetwork(
             moshi = moshi,
-            defaultLocationTracker = defaultLocationTracker
+            defaultLocationTracker = defaultLocationTracker,
         )
     }
+
     @Provides
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
@@ -94,6 +97,7 @@ class AppModule(
             localDataBase = dataStore
         )
     }
+
     @Provides
     fun provideDataStore(
         context: Context
@@ -102,8 +106,9 @@ class AppModule(
     }
 
     @Provides
-    fun provideContext(): Context{
+    fun provideContext(): Context {
         return context
     }
+
 
 }

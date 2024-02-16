@@ -1,6 +1,7 @@
 [versions]
 
 # app config
+accompanistPermissions = "0.31.4-beta"
 compileSdk = "34"
 minSdk = "26"
 targetSdk = "34"
@@ -47,6 +48,7 @@ material = "1.9.0"
 [libraries]
 
 # DI
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 dagger = { group = "com.google.dagger", name = "dagger-android", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }

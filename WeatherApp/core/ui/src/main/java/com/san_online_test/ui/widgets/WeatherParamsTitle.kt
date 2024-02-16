@@ -1,0 +1,16 @@
+package com.san_online_test.ui.widgets
+
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+
+@Composable
+fun WeatherParamsTitle(
+    paramTitleId: Int
+) {
+    Text(
+        text = stringResource(id = paramTitleId),
+        style = MaterialTheme.typography.titleSmall
+    )
+}
