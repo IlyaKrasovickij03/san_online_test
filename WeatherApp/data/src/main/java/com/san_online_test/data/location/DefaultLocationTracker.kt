@@ -15,7 +15,9 @@ import com.google.android.gms.location.LocationResult
 import com.san_online_test.data.storage.LocalStorage
 import com.san_online_test.domain.location.LocationTracker
 import com.san_online_test.domain.model.Location
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -27,6 +29,8 @@ class DefaultLocationTracker(
     private val application: Application,
     private val localStorage: LocalStorage,
 ) : LocationTracker {
+
+    val locationScope = CoroutineScope(context = Dispatchers.IO)
     @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
     override suspend fun getCurrentLocation(): Location? {
         val hasAccessFineLocationPermission = ContextCompat.checkSelfPermission(
@@ -51,6 +55,7 @@ class DefaultLocationTracker(
             Log.d("AAA", "зашел в куда не надо")
             return null
         }
+
 //        if (!isGpsEnabled) return Location()
         if (!isGpsEnabled) {
             Log.d("AAA", localStorage.getLastUserLocation().toString())
@@ -66,7 +71,7 @@ class DefaultLocationTracker(
 
                 val locationCallback = object : LocationCallback() {
                     override fun onLocationResult(p0: LocationResult) {
-                        GlobalScope.launch {
+                        locationScope.launch {
                             Log.d("latitude", p0.lastLocation!!.latitude.toString())
                             Log.d("longitude", p0.lastLocation!!.longitude.toString())
                             localStorage.saveLastUserLocation(Location(

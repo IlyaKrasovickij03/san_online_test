@@ -5,8 +5,8 @@ import com.san_online_test.weatherapp.presentation.home.navigation.HomeNavigator
 
 fun NavHostController.homeNavigator(externalNavigator: BottomMenuNavigator): HomeNavigator =
     object : HomeNavigator {
-        override fun navigateToDetails(id: String) {
-            externalNavigator.onNavigateToDetails(id)
+        override fun navigateToDetails(weatherItemDate: String) {
+            externalNavigator.onNavigateToDetails(weatherItemDate)
         }
 
         override fun onNavigateUp() {

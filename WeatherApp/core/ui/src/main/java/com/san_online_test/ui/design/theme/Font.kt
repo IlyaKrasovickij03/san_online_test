@@ -1,4 +1,4 @@
-package com.san_online_test.ui.theme
+package com.san_online_test.ui.design.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

@@ -13,12 +13,12 @@ import com.san_online_test.weatherapp.di.DiProvider
 import com.san_online_test.weatherapp.presentation.details.screen.DetailsScreen
 import com.san_online_test.weatherapp.presentation.details.viewModel.DetailsViewModel
 
-fun NavHostController.navigateToDetails(menuItemId: String) {
-    navigate("${DetailsDestination.route}/${menuItemId}")
+fun NavHostController.navigateToDetails(weatherItemDate: String) {
+    navigate("${DetailsDestination.route}/${weatherItemDate}")
 }
 
 data object DetailsDestination : WeatherAppDestination {
-    const val argumentName = "menuItem"
+    const val argumentName = "weatherItemDate"
     override val route = "details"
     val routeWithArgs = "${route}/{${argumentName}}"
     val arguments =
@@ -32,7 +32,8 @@ fun NavGraphBuilder.details(onNavigateUp: () -> Unit) {
     ) {
         val viewModel: DetailsViewModel = viewModel(
             factory = DetailsViewModel.Factory(
-                getOneWeatherUseCase = DiProvider.appComponent.getOneWeatherUseCase
+                getSingleWeatherUseCase = DiProvider.appComponent.getSingleWeatherUseCase,
+                getOneAmongFiveWeatherUseCase = DiProvider.appComponent.getOneAmongFiveWeatherUseCase
             )
         )
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()

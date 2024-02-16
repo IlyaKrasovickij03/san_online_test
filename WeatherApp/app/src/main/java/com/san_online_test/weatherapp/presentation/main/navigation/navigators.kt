@@ -7,7 +7,7 @@ import com.san_online_test.weatherapp.presentation.details.navigation.navigateTo
 fun NavHostController.bottomNavigator(): BottomMenuNavigator =
     object : BottomMenuNavigator {
         override fun onNavigateToDetails(weatherItemDate: String) {
-            navigateToDetails(menuItemId = weatherItemDate)
+            navigateToDetails(weatherItemDate = weatherItemDate)
         }
 
         override fun onNavigateUp() {

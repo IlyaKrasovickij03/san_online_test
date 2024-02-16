@@ -1,4 +1,4 @@
-package com.san_online_test.ui.theme
+package com.san_online_test.ui.design.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme

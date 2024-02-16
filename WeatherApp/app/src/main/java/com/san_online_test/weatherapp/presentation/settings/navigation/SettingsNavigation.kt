@@ -12,7 +12,7 @@ import com.san_online_test.weatherapp.presentation.settings.SettingsScreen
 const val SETTINGS_GRAPH = "SETTINGS_graph"
 
 data object SettingsDestination : WeatherAppDestination {
-    override val route = "$SETTINGS_GRAPH/search"
+    override val route = "$SETTINGS_GRAPH/settings"
 }
 
 fun NavGraphBuilder.settings() {

@@ -20,7 +20,7 @@ data object HomeDestination : WeatherAppDestination {
     override val route = "$HOME_GRAPH/home"
 }
 interface HomeNavigator{
-    fun navigateToDetails(id:String)
+    fun navigateToDetails(weatherItemDate:String)
     fun onNavigateUp()
 }
 
