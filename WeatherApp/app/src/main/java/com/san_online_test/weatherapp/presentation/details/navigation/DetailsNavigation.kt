@@ -32,7 +32,6 @@ fun NavGraphBuilder.details(onNavigateUp: () -> Unit) {
     ) {
         val viewModel: DetailsViewModel = viewModel(
             factory = DetailsViewModel.Factory(
-                getSingleWeatherUseCase = DiProvider.appComponent.getSingleWeatherUseCase,
                 getOneAmongFiveWeatherUseCase = DiProvider.appComponent.getOneAmongFiveWeatherUseCase
             )
         )

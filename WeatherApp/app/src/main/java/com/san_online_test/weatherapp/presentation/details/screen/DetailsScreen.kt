@@ -165,21 +165,6 @@ fun DetailsScreenPreview() {
     WeatherAppTheme {
         DetailsScreen(
             uiState = DetailsUiState.Success(
-                listOf(
-                    WeatherItem(
-                        cityName = "Санкт-Петербург",
-                        date = "16 февраля 2024г.",
-                        cloudyPercent = 50,
-                        relativeHumidity = 20,
-                        atmosphericPressure = 780,
-                        windSpeed = 10,
-                        minTemperature = -11,
-                        maxTemperature = -8,
-                        feelsLike = 1,
-                        visibility = 2,
-                        snow = 3
-                    )
-                ),
                 weatherInThisDay = WeatherItem(
                     cityName = "Санкт-Петербург",
                     date = "16 февраля 2024г.",

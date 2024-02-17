@@ -1,5 +1,6 @@
 package com.san_online_test.weatherapp.presentation.details.viewModel
 
+import android.util.Log
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -15,14 +16,11 @@ import kotlinx.coroutines.launch
 
 sealed interface DetailsUiState {
     data object Loading : DetailsUiState
-    data class Success(
-        val weatherList: List<WeatherItem>,
-        val weatherInThisDay: WeatherItem) : DetailsUiState
+    data class Success(val weatherInThisDay: WeatherItem) : DetailsUiState
     data class Error(val message: String) : DetailsUiState
 }
 
 class DetailsViewModel(
-    private val getSingleWeatherUseCase: GetSingleWeatherUseCase,
     private val getOneAmongFiveWeatherUseCase: GetOneAmongFiveWeatherUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -37,18 +35,16 @@ class DetailsViewModel(
 
     init {
         viewModelScope.launch {
-            val weatherItems = getSingleWeatherUseCase.execute(weatherItemDate)
+            Log.d("NETWORK", "ПОГОДА: "+weatherItemDate)
             val weatherInThisDay = getOneAmongFiveWeatherUseCase.execute(weatherItemDate)
             _uiState.update {
                 DetailsUiState.Success(
-                    weatherList = weatherItems,
                     weatherInThisDay = weatherInThisDay)
             }
         }
     }
 
     internal class Factory(
-        private val getSingleWeatherUseCase: GetSingleWeatherUseCase,
         private val getOneAmongFiveWeatherUseCase: GetOneAmongFiveWeatherUseCase,
     ) : AbstractSavedStateViewModelFactory() {
         @Suppress("UNCHECKED_CAST")
@@ -58,7 +54,6 @@ class DetailsViewModel(
             handle: SavedStateHandle
         ): T {
             return DetailsViewModel(
-                getSingleWeatherUseCase = getSingleWeatherUseCase,
                 getOneAmongFiveWeatherUseCase = getOneAmongFiveWeatherUseCase,
                 savedStateHandle = handle
             ) as T

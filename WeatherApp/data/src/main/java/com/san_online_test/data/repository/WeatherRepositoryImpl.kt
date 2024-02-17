@@ -54,7 +54,6 @@ class WeatherRepositoryImpl(
             )
             fiveWeatherList.add(avgWeatherItem)
         }
-
         return fiveWeatherList.take(5)
     }
 
