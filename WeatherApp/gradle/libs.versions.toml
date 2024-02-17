@@ -44,11 +44,13 @@ org-jetbrains-kotlin-jvm = "1.8.10"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.9.0"
+workRuntimeKtx = "2.9.0"
 
 [libraries]
 
 # DI
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 dagger = { group = "com.google.dagger", name = "dagger-android", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }

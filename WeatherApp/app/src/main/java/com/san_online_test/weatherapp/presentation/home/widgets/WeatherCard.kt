@@ -19,14 +19,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.san_online_test.domain.model.WeatherItem
-import com.san_online_test.ui.design.theme.WeatherAppTheme
-import com.san_online_test.ui.design.theme.height160
-import com.san_online_test.ui.design.theme.padding16
 import com.san_online_test.ui.R
+import com.san_online_test.ui.design.theme.WeatherAppTheme
+import com.san_online_test.ui.design.theme.cornerRadius30
+import com.san_online_test.ui.design.theme.height1
+import com.san_online_test.ui.design.theme.height160
+import com.san_online_test.ui.design.theme.height2
+import com.san_online_test.ui.design.theme.height25
+import com.san_online_test.ui.design.theme.padding16
+import com.san_online_test.ui.design.theme.space10
+import com.san_online_test.ui.design.theme.space5
+import com.san_online_test.ui.design.theme.width10
 import com.san_online_test.ui.widgets.WeatherParamsTitle
 
 @Composable
@@ -42,7 +47,7 @@ fun WeatherCard(
             .fillMaxWidth()
             .clickable { onItemClicked(item.date) },
         colors = CardDefaults.cardColors(containerColor = cardContainerColor),
-        shape = RoundedCornerShape(30.dp)
+        shape = RoundedCornerShape(cornerRadius30)
     ) {
         Row(
             modifier = Modifier
@@ -56,46 +61,46 @@ fun WeatherCard(
                 Text(text = item.date,
                     style = MaterialTheme.typography.titleSmall
                 )
-                Spacer(modifier = Modifier.height(25.dp))
-                Row (horizontalArrangement = Arrangement.spacedBy(10.dp),
+                Spacer(modifier = Modifier.height(height25))
+                Row (horizontalArrangement = Arrangement.spacedBy(space10),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.min_temp)
                     Text(text = item.minTemperature.toString() + "°C",
                         style = MaterialTheme.typography.titleLarge)
                 }
-                Spacer(modifier = Modifier.height(2.dp))
-                Row (horizontalArrangement = Arrangement.spacedBy(10.dp),
+                Spacer(modifier = Modifier.height(height2))
+                Row (horizontalArrangement = Arrangement.spacedBy(space10),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.max_temp)
                     Text(text = item.maxTemperature.toString() + "°C",
                         style = MaterialTheme.typography.titleLarge)
                 }
-                Spacer(modifier = Modifier.height(1.dp))
+                Spacer(modifier = Modifier.height(height1))
             }
 
             Column(modifier = Modifier,
-                verticalArrangement = Arrangement.spacedBy(5.dp)
+                verticalArrangement = Arrangement.spacedBy(space5)
             ) {
                 Row (verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.cloudy_percent)
                     Text(text = item.cloudyPercent.toString() + "%")
                 }
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(width10))
                 Row (verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.wind_speed)
                     Text(text = item.windSpeed.toString() + "м/с")
                 }
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(width10))
                 Row (verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.relative_humidity)
                     Text(text = item.relativeHumidity.toString()+"%")
                 }
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(width10))
                 Row (verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.atmospheric_pressure)

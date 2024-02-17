@@ -29,7 +29,6 @@ fun NavGraphBuilder.home(externalNavigator: HomeNavigator) {
         composable(route = HomeDestination.route) {
             val viewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.Factory(
-                    getAllWeatherUseCase = DiProvider.appComponent.getAllWeatherUseCase,
                     getFiveWeatherUseCase = DiProvider.appComponent.getFiveWeatherUseCase,
                     getCurrentUserLocationUseCase = DiProvider.appComponent.getCurrentUserLocationUseCase
                 )

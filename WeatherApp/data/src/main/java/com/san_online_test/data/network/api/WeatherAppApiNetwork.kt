@@ -1,7 +1,6 @@
 package com.san_online_test.data.network.api
 
 import android.content.Context
-import android.util.Log
 import com.san_online_test.data.location.DefaultLocationTracker
 import com.san_online_test.data.network.model.WeatherNetwork
 import com.san_online_test.data.network_monitor.NetworkMonitor
@@ -29,7 +28,7 @@ class WeatherAppApiNetwork(
     override suspend fun createApiWithLocation(defaultLocationTracker: DefaultLocationTracker): String {
         val latitude = defaultLocationTracker.getCurrentLocation()?.latitude
         val longitude = defaultLocationTracker.getCurrentLocation()?.longitude
-        return if (latitude == null && longitude == null) "http://api.openweathermap.org/data/2.5/" + "forecast?lat=55.7522&lon=37.6156&lang=ru&appid=f6f4dc2da8092cb1c8b18c09dfd1e77f&units=metric"
+        return if (latitude == null && longitude == null) "http://api.openweathermap.org/data/2.5/forecast?lat=55.7522&lon=37.6156&lang=ru&appid=f6f4dc2da8092cb1c8b18c09dfd1e77f&units=metric"
         else "http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&lang=ru&appid=f6f4dc2da8092cb1c8b18c09dfd1e77f&units=metric"
     }
 
@@ -50,12 +49,11 @@ class WeatherAppApiNetwork(
                         continuation.resume(response)
                     }
                 } catch (e: IllegalStateException) {
-                    // Обработка исключения
+
                 }
             }
         } else {
             localScope.launch {
-                Log.d("NETWORK_RESULT", "MONITOR NULL")
                 val json = localStorage.getLastDataFromNetwork()
                 val jsonAdapter = moshi.adapter(WeatherNetwork::class.java)
                 val response = jsonAdapter.fromJson(json) as WeatherNetwork
@@ -64,7 +62,7 @@ class WeatherAppApiNetwork(
                         continuation.resume(response)
                     }
                 } catch (e: IllegalStateException) {
-                    // Обработка исключения
+
                 }
             }
         }

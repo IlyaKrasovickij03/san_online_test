@@ -14,10 +14,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import com.san_online_test.ui.design.theme.WeatherAppTheme
+import com.san_online_test.ui.design.theme.height80
 
 @Composable
 fun WeatherAppNavBar(
@@ -38,7 +36,7 @@ fun WeatherAppNavBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .windowInsetsPadding(windowInsets)
-                .height(80.dp)
+                .height(height80)
                 .selectableGroup(),
             horizontalArrangement = Arrangement.Center,
             content = content
@@ -46,10 +44,3 @@ fun WeatherAppNavBar(
     }
 }
 
-//@Preview
-//@Composable
-//fun WeatherAppNavBarPreview() {
-//    WeatherAppTheme {
-//        WeatherAppNavBar()
-//    }
-//}

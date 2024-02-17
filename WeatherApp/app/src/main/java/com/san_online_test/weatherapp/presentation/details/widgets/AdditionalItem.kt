@@ -14,20 +14,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.san_online_test.ui.R
 import com.san_online_test.ui.design.theme.WeatherAppTheme
-import com.san_online_test.ui.design.theme.padding16
+import com.san_online_test.ui.design.theme.height4
+import com.san_online_test.ui.design.theme.height90
+import com.san_online_test.ui.design.theme.padding8
+import com.san_online_test.ui.design.theme.width135
 
 @Composable
 fun AdditionalItem(additionalInfo: Pair<Int, String>) {
     Card (modifier = Modifier
-        .height(90.dp)
-        .width(135.dp),
+        .height(height90)
+        .width(width135),
     ){
         Column (
             modifier = Modifier
-                .padding(8.dp)
+                .padding(padding8)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
@@ -35,7 +37,7 @@ fun AdditionalItem(additionalInfo: Pair<Int, String>) {
             Text(modifier = Modifier,
                 text = stringResource(id = additionalInfo.first),
                 maxLines = 2)
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(height4))
             Text(modifier = Modifier,
                 text = additionalInfo.second)
         }

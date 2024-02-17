@@ -1,13 +1,11 @@
 package com.san_online_test.weatherapp.presentation.details.viewModel
 
-import android.util.Log
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.san_online_test.domain.model.WeatherItem
 import com.san_online_test.domain.usecases.GetOneAmongFiveWeatherUseCase
-import com.san_online_test.domain.usecases.GetSingleWeatherUseCase
 import com.san_online_test.weatherapp.presentation.details.navigation.DetailsDestination
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,7 +33,6 @@ class DetailsViewModel(
 
     init {
         viewModelScope.launch {
-            Log.d("NETWORK", "ПОГОДА: "+weatherItemDate)
             val weatherInThisDay = getOneAmongFiveWeatherUseCase.execute(weatherItemDate)
             _uiState.update {
                 DetailsUiState.Success(

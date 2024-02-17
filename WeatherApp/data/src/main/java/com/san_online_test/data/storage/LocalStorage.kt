@@ -1,11 +1,9 @@
 package com.san_online_test.data.storage
 
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.san_online_test.data.location.DefaultLocationTracker
 import com.san_online_test.domain.model.Location
 import kotlinx.coroutines.flow.first
 
@@ -24,20 +22,15 @@ class LocalStorage(
     suspend fun saveLastUserLocation(location: Location) {
         val latitude = location.latitude.toString()
         val longitude = location.longitude.toString()
-        Log.d("LATITUDE_IN_STORAGE", latitude)
-        Log.d("LONGITUDE_IN_STORAGE", longitude)
         localDataBase.edit {
             it[lastUserLatitude] = latitude
             it[lastUserLongitude] = longitude
-            Log.d("LATITUDE_SAVED_IN_STORAGE", it[lastUserLatitude]!!)
-            Log.d("LONGITUDE_SAVED_IN_STORAGE", it[lastUserLongitude]!!)
         }
     }
 
     suspend fun saveLastDataFromNetwork(json: String) {
         localDataBase.edit {
             it[lastDataFromNetwork] = json
-            Log.d("JSON_SAVED_IN_STORAGE", it[lastDataFromNetwork]!!)
         }
     }
 

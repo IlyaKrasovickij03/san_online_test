@@ -82,6 +82,3 @@ data class Coord(
     val lat: Double,
     val lon: Double,
 )
-
-
-// @Json(name = "dt") val iconUrl: Int,

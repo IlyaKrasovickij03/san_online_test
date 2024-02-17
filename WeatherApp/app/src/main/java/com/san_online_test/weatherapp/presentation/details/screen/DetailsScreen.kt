@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,15 +22,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.san_online_test.domain.model.WeatherItem
 import com.san_online_test.ui.R
 import com.san_online_test.ui.design.theme.WeatherAppTheme
+import com.san_online_test.ui.design.theme.height2
+import com.san_online_test.ui.design.theme.height20
+import com.san_online_test.ui.design.theme.height200
+import com.san_online_test.ui.design.theme.height4
 import com.san_online_test.ui.design.theme.padding16
+import com.san_online_test.ui.design.theme.space10
 import com.san_online_test.ui.widgets.LoadingIndicator
 import com.san_online_test.ui.widgets.WeatherParamsTitle
 import com.san_online_test.weatherapp.presentation.details.viewModel.DetailsUiState
-import com.san_online_test.weatherapp.presentation.details.widgets.AdditionalItem
+import com.san_online_test.weatherapp.presentation.details.widgets.AdditionalInfo
 
 @Composable
 fun DetailsScreen(
@@ -42,7 +44,7 @@ fun DetailsScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFFFFFF))
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(
             modifier = Modifier
@@ -85,7 +87,7 @@ fun DetailsScreenContent(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp)
+                .height(height200)
         ) {
             Column(
                 modifier = Modifier.padding(padding16)
@@ -94,14 +96,14 @@ fun DetailsScreenContent(
                     text = uiState.weatherInThisDay.date,
                     style = MaterialTheme.typography.titleSmall
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(height4))
                 Text(
                     text = uiState.weatherInThisDay.cityName,
                     style = MaterialTheme.typography.titleSmall
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(height20))
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalArrangement = Arrangement.spacedBy(space10),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.min_temp)
@@ -110,9 +112,9 @@ fun DetailsScreenContent(
                         style = MaterialTheme.typography.titleLarge
                     )
                 }
-                Spacer(modifier = Modifier.height(2.dp))
+                Spacer(modifier = Modifier.height(height2))
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalArrangement = Arrangement.spacedBy(space10),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.max_temp)
@@ -121,9 +123,9 @@ fun DetailsScreenContent(
                         style = MaterialTheme.typography.titleLarge
                     )
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(space10))
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalArrangement = Arrangement.spacedBy(space10),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     WeatherParamsTitle(R.string.cloudy_percent)
@@ -131,32 +133,12 @@ fun DetailsScreenContent(
                 }
             }
         }
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(height20))
         AdditionalInfo(uiState = uiState)
     }
 }
 
-@Composable
-fun AdditionalInfo(
-    uiState: DetailsUiState.Success
-) {
-    val additionalInfo = mutableListOf<Pair<Int, String>>()
-    additionalInfo.add(Pair(R.string.wind_speed, uiState.weatherInThisDay.windSpeed.toString()))
-    additionalInfo.add(Pair(R.string.atmospheric_pressure, uiState.weatherInThisDay.atmosphericPressure.toString()))
-    additionalInfo.add(Pair(R.string.relative_humidity, uiState.weatherInThisDay.relativeHumidity.toString()))
-    additionalInfo.add(Pair(R.string.feels_like, uiState.weatherInThisDay.feelsLike.toString()))
-    additionalInfo.add(Pair(R.string.visibility, uiState.weatherInThisDay.visibility.toString()))
-    additionalInfo.add(Pair(R.string.snow, uiState.weatherInThisDay.snow.toString()))
-    LazyRow(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(additionalInfo) {
-            AdditionalItem(additionalInfo = it)
-        }
-    }
 
-}
 
 
 @Preview(showSystemUi = true)

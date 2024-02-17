@@ -32,6 +32,14 @@
     <!-- Content Description -->
     <string name="arrow_back_cd">Navigate Back</string>
 
+    <!-- AlertDialog -->
+    <string name="alert_location_title">Необходимо разрешение на геолокацию</string>
+    <string name="alert_location_text">Это приложение требует разрешение на геолокацию для работы некоторых функций.</string>
+    <string name="alert_location_confirm_button">Разрешить</string>
+
+    <!-- Failed -->
+    <string name="home_screen_failed">Для работы приложения необходимо разрешить доступ к Вашей геолокации</string>
+    <string name="open_settings">Перейти в Настройки</string>
 
 </resources>
 

@@ -45,7 +45,7 @@ fun WeatherAppBottomBar(
 
 @Preview
 @Composable
-fun KiparoNavBarPreview() {
+fun WeatherAppNavBarPreview() {
     WeatherAppTheme {
         WeatherAppBottomBar(
             bottomUiState = BottomMenuUiState(

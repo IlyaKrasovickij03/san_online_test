@@ -3,10 +3,9 @@ package com.san_online_test.weatherapp.presentation.settings.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.san_online_test.navigation.WeatherTopLevelDestination
 import com.san_online_test.navigation.WeatherAppDestination
+import com.san_online_test.navigation.WeatherTopLevelDestination
 import com.san_online_test.ui.R
-import com.san_online_test.weatherapp.presentation.search.SearchScreen
 import com.san_online_test.weatherapp.presentation.settings.SettingsScreen
 
 const val SETTINGS_GRAPH = "SETTINGS_graph"

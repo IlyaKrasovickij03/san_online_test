@@ -38,27 +38,23 @@ dependencies {
     implementation(project(":domain"))
 
     implementation(libs.javax.inject)
-
     implementation(libs.core.ktx)
-
-    implementation("com.google.android.gms:play-services-location:21.0.1")
-
-    // Permissions
-    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
-
-    // Needed if targeting API > 31 (Android 12+)
-    implementation ("androidx.work:work-runtime-ktx:2.8.1")
-
-    //parsing
-    implementation(libs.moshi.kotlin)
+    implementation (libs.androidx.work.runtime.ktx)
     implementation(libs.play.services.location)
+    implementation (libs.accompanist.permissions)
+    implementation(libs.moshi.kotlin)
     implementation(libs.datastore)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-
     implementation(libs.kotlinx.coroutines.android)
+
+    // tests
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
