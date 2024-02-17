@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.first
 
 private const val LATITUDE_KEY = "latitudeKey"
 private const val LONGITUDE_KEY = "longitudeKey"
+private const val NETWORK_KEY = "networkKey"
 
 class LocalStorage(
     private val localDataBase: DataStore<Preferences>,
@@ -18,6 +19,7 @@ class LocalStorage(
 
     private val lastUserLatitude: Preferences.Key<String> = stringPreferencesKey(LATITUDE_KEY)
     private val lastUserLongitude: Preferences.Key<String> = stringPreferencesKey(LONGITUDE_KEY)
+    private val lastDataFromNetwork: Preferences.Key<String> = stringPreferencesKey(NETWORK_KEY)
 
     suspend fun saveLastUserLocation(location: Location) {
         val latitude = location.latitude.toString()
@@ -32,11 +34,23 @@ class LocalStorage(
         }
     }
 
+    suspend fun saveLastDataFromNetwork(json: String) {
+        localDataBase.edit {
+            it[lastDataFromNetwork] = json
+            Log.d("JSON_SAVED_IN_STORAGE", it[lastDataFromNetwork]!!)
+        }
+    }
+
     suspend fun getLastUserLocation(): Location {
         val lastUserLatitude = localDataBase.data.first()[lastUserLatitude]
         val lastUserLongitude = localDataBase.data.first()[lastUserLongitude]
         return if (lastUserLatitude == null && lastUserLongitude == null) Location(55.7522, 37.6156)
         else Location(latitude = lastUserLatitude!!.toDouble(), longitude = lastUserLongitude!!.toDouble())
+    }
+
+    suspend fun getLastDataFromNetwork(): String {
+        val lastDataFromNetwork = localDataBase.data.first()[lastDataFromNetwork]
+        return lastDataFromNetwork ?: ""
     }
 
 }

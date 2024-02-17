@@ -43,10 +43,14 @@ class AppModule(
     fun provideWeatherAppApiNetwork(
         moshi: Moshi,
         defaultLocationTracker: DefaultLocationTracker,
+        context: Context,
+        localStorage: LocalStorage
     ): WeatherAppApiNetwork {
         return WeatherAppApiNetwork(
             moshi = moshi,
             defaultLocationTracker = defaultLocationTracker,
+            context = context,
+            localStorage = localStorage
         )
     }
 
