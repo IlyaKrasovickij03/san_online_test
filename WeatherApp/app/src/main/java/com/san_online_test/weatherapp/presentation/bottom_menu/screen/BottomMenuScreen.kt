@@ -1,5 +1,6 @@
 package com.san_online_test.weatherapp.presentation.bottom_menu.screen
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -72,21 +73,21 @@ fun BottomMenuScreen(externalNavigator: BottomMenuNavigator) {
     }
 }
 
-@Preview
-@Composable
-fun BottomMenuScreenPreview() {
-    WeatherAppTheme {
-        BottomMenuScreen(
-            externalNavigator = object : BottomMenuNavigator {
-                override fun onNavigateToDetails(weatherItemDate: String) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onNavigateUp() {
-                    TODO("Not yet implemented")
-                }
-            }
-
-        )
-    }
-}
+//@Preview
+//@Composable
+//fun BottomMenuScreenPreview() {
+//    WeatherAppTheme {
+//        BottomMenuScreen(
+//            externalNavigator = object : BottomMenuNavigator {
+//                override fun onNavigateToDetails(weatherItemDate: String) {
+//                    TODO("Not yet implemented")
+//                }
+//
+//                override fun onNavigateUp() {
+//                    TODO("Not yet implemented")
+//                }
+//            }
+//
+//        )
+//    }
+//}

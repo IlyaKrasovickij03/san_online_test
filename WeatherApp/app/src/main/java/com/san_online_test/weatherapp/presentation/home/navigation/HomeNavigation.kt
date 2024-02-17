@@ -1,5 +1,6 @@
 package com.san_online_test.weatherapp.presentation.home.navigation
 
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,7 +37,7 @@ fun NavGraphBuilder.home(externalNavigator: HomeNavigator) {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             HomeScreen(
                 uiState = uiState,
-                onItemSelected = externalNavigator::navigateToDetails,
+                onItemSelected = externalNavigator::navigateToDetails
             )
         }
     }

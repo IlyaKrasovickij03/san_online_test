@@ -1,7 +1,6 @@
 package com.san_online_test.weatherapp.presentation.home.screen
 
 import android.Manifest
-import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -18,16 +17,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -56,7 +49,7 @@ import kotlinx.collections.immutable.toImmutableList
 @Composable
 
 fun HomeScreen(
-    uiState: HomeUiState, onItemSelected: (itemDate: String) -> Unit,
+    uiState: HomeUiState, onItemSelected: (itemDate: String) -> Unit
 ) {
     val homeViewModel: HomeViewModel = viewModel()
 
@@ -127,7 +120,7 @@ private fun HomeScreenContent(
 fun LocationPermissionRequest(
     uiState: HomeUiState,
     homeViewModel: HomeViewModel,
-    onItemSelected: (itemDate: String) -> Unit
+    onItemSelected: (itemDate: String) -> Unit,
 ) {
     val permissionState = rememberMultiplePermissionsState(
         listOf(
@@ -139,7 +132,6 @@ fun LocationPermissionRequest(
     LaunchedEffect(permissionState) {
         permissionState.launchMultiplePermissionRequest()
     }
-
     when {
         permissionState.allPermissionsGranted -> {
             homeViewModel.getLocation()
@@ -151,6 +143,7 @@ fun LocationPermissionRequest(
                         LoadingIndicator()
                     }
                 }
+
                 is HomeUiState.Success -> {
                     HomeScreenContent(
                         uiState = uiState, onItemSelected = onItemSelected
@@ -158,16 +151,16 @@ fun LocationPermissionRequest(
                 }
             }
         }
+
         permissionState.shouldShowRationale -> {
             LocationAlertDialog(launcher = launcher)
         }
+
         else -> {
             HomeScreenFailed()
         }
     }
 }
-
-
 
 @Preview
 @Composable

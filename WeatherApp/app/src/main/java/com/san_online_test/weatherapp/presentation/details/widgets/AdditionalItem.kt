@@ -22,7 +22,7 @@ import com.san_online_test.ui.design.theme.padding8
 import com.san_online_test.ui.design.theme.width135
 
 @Composable
-fun AdditionalItem(additionalInfo: Pair<Int, String>) {
+fun AdditionalItem(additionalInfo: Triple<Int, String, String>) {
     Card (modifier = Modifier
         .height(height90)
         .width(width135),
@@ -39,7 +39,7 @@ fun AdditionalItem(additionalInfo: Pair<Int, String>) {
                 maxLines = 2)
             Spacer(modifier = Modifier.height(height4))
             Text(modifier = Modifier,
-                text = additionalInfo.second)
+                text = additionalInfo.second+additionalInfo.third)
         }
 
     }
@@ -49,6 +49,6 @@ fun AdditionalItem(additionalInfo: Pair<Int, String>) {
 @Composable
 fun AdditionalItemPreview() {
     WeatherAppTheme {
-        AdditionalItem(Pair(R.string.wind_speed, "10"))
+        AdditionalItem(Triple(R.string.wind_speed, "10", "м/c"))
     }
 }

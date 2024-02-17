@@ -47,13 +47,11 @@ class HomeViewModel(
     fun getSwipeList() = viewModelScope.launch {
         isRefreshing = true
         delay(2000L)
-        Log.d("AAA", "Refresh")
         isRefreshing = false
         delay(2000L)
         setCurrentLocation()
     }
     private fun initHome(){
-
         viewModelScope.launch {
             val fiveWeatherForecast = getFiveWeatherUseCase.execute()
             val location = getCurrentUserLocationUseCase.execute()
@@ -70,7 +68,6 @@ class HomeViewModel(
 
     fun getLocation(){
         viewModelScope.launch {
-            Log.d("LOCATION", getCurrentUserLocationUseCase.execute().toString())
             val fiveWeatherForecast = getFiveWeatherUseCase.execute()
             val location = getCurrentUserLocationUseCase.execute()
             _uiState.value =
@@ -86,7 +83,6 @@ class HomeViewModel(
 
     private fun setCurrentLocation() {
         viewModelScope.launch {
-            Log.d("LOCATION", getCurrentUserLocationUseCase.execute().toString())
             val fiveWeatherForecast = getFiveWeatherUseCase.execute()
             val location = getCurrentUserLocationUseCase.execute()
             _uiState.update {

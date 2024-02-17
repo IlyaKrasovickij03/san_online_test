@@ -17,13 +17,13 @@ import com.san_online_test.weatherapp.presentation.details.viewModel.DetailsUiSt
 fun AdditionalInfo(
     uiState: DetailsUiState.Success
 ) {
-    val additionalInfo = mutableListOf<Pair<Int, String>>()
-    additionalInfo.add(Pair(R.string.wind_speed, uiState.weatherInThisDay.windSpeed.toString()))
-    additionalInfo.add(Pair(R.string.atmospheric_pressure, uiState.weatherInThisDay.atmosphericPressure.toString()))
-    additionalInfo.add(Pair(R.string.relative_humidity, uiState.weatherInThisDay.relativeHumidity.toString()))
-    additionalInfo.add(Pair(R.string.feels_like, uiState.weatherInThisDay.feelsLike.toString()))
-    additionalInfo.add(Pair(R.string.visibility, uiState.weatherInThisDay.visibility.toString()))
-    additionalInfo.add(Pair(R.string.snow, uiState.weatherInThisDay.snow.toString()))
+    val additionalInfo = mutableListOf<Triple<Int, String, String>>()
+    additionalInfo.add(Triple(R.string.wind_speed, uiState.weatherInThisDay.windSpeed.toString(), "м/c"))
+    additionalInfo.add(Triple(R.string.atmospheric_pressure, uiState.weatherInThisDay.atmosphericPressure.toString(), "кПа"))
+    additionalInfo.add(Triple(R.string.relative_humidity, uiState.weatherInThisDay.relativeHumidity.toString(), "%"))
+    additionalInfo.add(Triple(R.string.feels_like, uiState.weatherInThisDay.feelsLike.toString(), "°C"))
+    additionalInfo.add(Triple(R.string.visibility, uiState.weatherInThisDay.visibility.toString(), "м"))
+    additionalInfo.add(Triple(R.string.snow, uiState.weatherInThisDay.snow.toString(), ""))
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(space8)
