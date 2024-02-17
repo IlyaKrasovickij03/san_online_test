@@ -36,6 +36,7 @@
     <string name="alert_location_title">Необходимо разрешение на геолокацию</string>
     <string name="alert_location_text">Это приложение требует разрешение на геолокацию для работы некоторых функций.</string>
     <string name="alert_location_confirm_button">Разрешить</string>
+    <string name="alert_location_dismiss_button">Отклонить</string>
 
     <!-- Failed -->
     <string name="home_screen_failed">Для работы приложения необходимо разрешить доступ к Вашей геолокации</string>
